@@ -2,7 +2,7 @@
 namespace System
 open System.Reflection
 
-[<assembly: AssemblyTitleAttribute("MSNumpressFSharp")>]
+[<assembly: AssemblyTitleAttribute("MSNumpressFSharpConsole")>]
 [<assembly: AssemblyProductAttribute("MSNumpressFSharp")>]
 [<assembly: AssemblyDescriptionAttribute("F# port of the MSNumpress library.")>]
 [<assembly: AssemblyVersionAttribute("0.0.1")>]
@@ -11,7 +11,7 @@ open System.Reflection
 do ()
 
 module internal AssemblyVersionInformation =
-    let [<Literal>] AssemblyTitle = "MSNumpressFSharp"
+    let [<Literal>] AssemblyTitle = "MSNumpressFSharpConsole"
     let [<Literal>] AssemblyProduct = "MSNumpressFSharp"
     let [<Literal>] AssemblyDescription = "F# port of the MSNumpress library."
     let [<Literal>] AssemblyVersion = "0.0.1"
