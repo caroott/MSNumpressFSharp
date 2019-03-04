@@ -50,7 +50,6 @@ the number of encoded bytes.</p>
 <span class="l">6: </span>
 <span class="l">7: </span>
 <span class="l">8: </span>
-<span class="l">9: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">//sample data</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">dataPic</span> <span class="o">=</span> <span class="pn">[|</span><span class="n">1.</span> <span class="o">..</span> <span class="n">100.</span><span class="pn">|]</span>
@@ -60,21 +59,21 @@ the number of encoded bytes.</p>
 
 <span class="c">//takes data, data length and an empty array for the encoded bytes. Returns the number of encoded bytes.</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 9)" onmouseover="showTip(event, 'fs8', 9)" class="id">encodePic</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs1', 10)" onmouseover="showTip(event, 'fs1', 10)" class="fn">MSNumpressFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="m">Encode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">encodePic</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs2', 13)" onmouseover="showTip(event, 'fs2', 13)" class="id">dataPic</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs2', 14)" onmouseover="showTip(event, 'fs2', 14)" class="id">dataPic</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="id">Length</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs3', 16)" onmouseover="showTip(event, 'fs3', 16)" class="id">byteArrayPic</span><span class="pn">)</span>
-                
 </code></pre></td>
 </tr>
 </table>
-<p>byteArrayPic contains now the compressed data. The byte array and number of encoded bytes is needed for
+<p>byteArrayPic now contains the compressed data. The byte array and number of encoded bytes is needed for
 decoding.</p>
 <h3><a name="Numpress-Lin" class="anchor" href="#Numpress-Lin">Numpress Lin</a></h3>
 <p>This compression uses a fixed point representation, achieved by multiplication with a scaling factor
-and rounding to the nearest integer. To exploit the assumed linearity of the data, linear prediction is
-then used.The scaling factor can be chosen manually, but the library also contains a function for
+and rounding to the nearest integer. The algorithm is intended for m/z or retention time data. To exploit
+the assumed linearity of the data, linear prediction is then used.
+The scaling factor can be chosen manually, but the library also contains a function for
 retrieving the optimal linear scaling factor for a given data array. Since the scaling factor is variable,
 it is stored as a regular double precision float first in the encoding, and automatically parsed during
 decoding.</p>
 <p>The encodeLinear function takes an array with data, the length of this array, a byte array where the encoded bytes
-are stored and a linear scaling factor.The maximum size of the byte array is 8 + n * 5,
+are stored and a linear scaling factor. The maximum size of the byte array is 8 + n * 5,
 but usually it is smaller depending on the data. The function modifies the byte array and returns
 the number of encoded bytes.</p>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
@@ -103,7 +102,7 @@ the number of encoded bytes.</p>
 </code></pre></td>
 </tr>
 </table>
-<p>byteArrayLin contains now the compressed data. The byte array and number of encoded bytes is needed for
+<p>byteArrayLin now contains the compressed data. The byte array and number of encoded bytes is needed for
 decoding.</p>
 <h3><a name="Numpress-Slof" class="anchor" href="#Numpress-Slof">Numpress Slof</a></h3>
 <p>This function also targets ion count data. The compression takes the natural logarithm of values, multiplies it
@@ -143,7 +142,7 @@ the number of encoded bytes.</p>
 </code></pre></td>
 </tr>
 </table>
-<p>byteArrayLin contains now the compressed data. The byte array and number of encoded bytes is needed for
+<p>byteArrayLin now contains the compressed data. The byte array and number of encoded bytes is needed for
 decoding.</p>
 
 <div class="tip" id="fs1">namespace MSNumpressFSharp</div>
