@@ -27,20 +27,21 @@ let byteArrayPic: byte[] = Array.zeroCreate (dataPic.Length * 5)
 let encodePic = MSNumpressFSharp.Encode.encodePic (dataPic, dataPic.Length, byteArrayPic)
 
 (**
-byteArrayPic contains now the compressed data. The byte array and number of encoded bytes is needed for 
+byteArrayPic now contains the compressed data. The byte array and number of encoded bytes is needed for 
 decoding.
 
 ###Numpress Lin
 
 This compression uses a fixed point representation, achieved by multiplication with a scaling factor 
-and rounding to the nearest integer. To exploit the assumed linearity of the data, linear prediction is 
-then used.The scaling factor can be chosen manually, but the library also contains a function for 
+and rounding to the nearest integer. The algorithm is intended for m/z or retention time data. To exploit 
+the assumed linearity of the data, linear prediction is then used. 
+The scaling factor can be chosen manually, but the library also contains a function for 
 retrieving the optimal linear scaling factor for a given data array. Since the scaling factor is variable, 
 it is stored as a regular double precision float first in the encoding, and automatically parsed during 
 decoding.
 
 The encodeLinear function takes an array with data, the length of this array, a byte array where the encoded bytes 
-are stored and a linear scaling factor.The maximum size of the byte array is 8 + n * 5, 
+are stored and a linear scaling factor. The maximum size of the byte array is 8 + n * 5, 
 but usually it is smaller depending on the data. The function modifies the byte array and returns 
 the number of encoded bytes.
 *)
@@ -58,7 +59,7 @@ let optimalFixedPointLin = MSNumpressFSharp.Encode.optimalLinearFixedPoint (data
 let encodeLin = MSNumpressFSharp.Encode.encodeLinear (dataLin, dataLin.Length, byteArrayLin, optimalFixedPointLin)
 
 (**
-byteArrayLin contains now the compressed data. The byte array and number of encoded bytes is needed for 
+byteArrayLin now contains the compressed data. The byte array and number of encoded bytes is needed for 
 decoding.
 
 ###Numpress Slof
@@ -90,6 +91,6 @@ let optimalFixedPointSlof = MSNumpressFSharp.Encode.optimalSlofFixedPoint (dataS
 let encodeSlof = MSNumpressFSharp.Encode.encodeSlof (dataSlof, dataSlof.Length, byteArraySlof, optimalFixedPointSlof)
 
 (**
-byteArrayLin contains now the compressed data. The byte array and number of encoded bytes is needed for 
+byteArrayLin now contains the compressed data. The byte array and number of encoded bytes is needed for 
 decoding.
 *)
